@@ -1,0 +1,4 @@
+interface:
+  display_name: "科研综述PPT优化"
+  short_description: "将科研综述草稿整理为严谨、统一、可汇报的组会PPT"
+  default_prompt: "Use $optimize-research-review-slides to optimize my draft and first ask whether to control the main deck by minutes, slide count, or agent judgment."
