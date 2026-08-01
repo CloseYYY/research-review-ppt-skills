@@ -1,6 +1,6 @@
 ---
 name: optimize-research-review-slides
-description: Optimize a draft scientific review or methods-summary PowerPoint into a rigorous, coherent, presentation-ready journal-club or lab-meeting deck, using an optional reference/template PPTX. Use for Chinese or English life-science review slides that need literature supplementation, scientific rewriting, concise titles, evidence-aware figures, unified formatting, target-duration control, a main-talk plus backup-slide structure, speaker notes, terminology expansion, citations, domain-specific standards, and rendered visual QA. Use when the presentation mainly synthesizes published knowledge or methods; do not use as the primary workflow for a data-driven lab meeting centered on the user's new experimental results.
+description: Optimize a draft scientific review or methods-summary PowerPoint into a rigorous, coherent, presentation-ready journal-club or lab-meeting deck, using an optional reference/template PPTX or one of four bundled white-background color templates. Use for Chinese or English life-science review slides that need literature supplementation, scientific rewriting, concise titles, evidence-aware figures, unified formatting, no-template palette selection, target-duration control, a main-talk plus backup-slide structure, speaker notes, terminology expansion, citations, domain-specific standards, and rendered visual QA. Use when the presentation mainly synthesizes published knowledge or methods; do not use as the primary workflow for a data-driven lab meeting centered on the user's new experimental results.
 ---
 
 # Optimize Scientific Review Slides
@@ -26,13 +26,16 @@ Prefer these inputs:
 
 Before optimizing, obtain the main-deck size constraint with one concise question unless the user already supplied it. Offer three routes: target presentation duration, target main-slide count, or agent-determined length. Treat backup slides as outside the main-slide count unless the user says otherwise. If the user delegates the decision, inspect the draft and choose both a target duration and main-slide range, then state the choice before editing.
 
-If a template is supplied, treat it as the visual authority. If other essential scientific scope is ambiguous, ask at most one additional concise question; otherwise make conservative assumptions and proceed. Preserve source files and export a new PPTX unless the user explicitly requests in-place editing.
+If no reference/template PPTX is supplied, read [default-template.md](references/default-template.md) and ask the user to choose A clinical blue, B life teal, C editorial coral, D graphite indigo, or agent-determined palette. Recommend A and use A when the user delegates or does not answer. When both deck size and palette are missing, ask for both in one compact intake question rather than two separate interruptions.
+
+If a template is supplied, treat it as the visual authority. If no template is supplied, treat the selected bundled template as the visual authority. Explicit user visual direction overrides the bundled default. If other essential scientific scope is ambiguous, ask at most one additional concise question; otherwise make conservative assumptions and proceed. Preserve source files and export a new PPTX unless the user explicitly requests in-place editing.
 
 ## Execute the workflow
 
 ### 1. Audit both decks
 
 - Inspect every draft and template slide, including masters, layouts, placeholders, notes, figures, tables, fonts, colors, and page furniture.
+- When no external template is supplied, load the selected asset from `assets/default-templates/` and inspect all eight source layouts before editing.
 - Run `scripts/audit_pptx.py` on the draft before editing and on the final file with `--strict`.
 - Identify reusable template layouts rather than recreating the style approximately.
 - Record existing claims, missing links, duplicated material, weak figures, and unsupported conclusions.
@@ -75,7 +78,8 @@ If a template is supplied, treat it as the visual authority. If other essential 
 ### 6. Apply the template and typography
 
 - Preserve the template's master/layout hierarchy, margins, title treatment, footer, and page numbering.
-- Use a white background and a consistent sans-serif font when no stronger template instruction exists.
+- When no external template exists, use the selected bundled template rather than inventing an unrelated style or falling back to a generic layout library. Replace all sample copy while preserving its layout system and palette.
+- Use a white background and a consistent sans-serif font when no stronger template instruction exists. The bundled templates use Microsoft YaHei with a white canvas and palette-specific accent colors.
 - Use 1.2–1.5 line spacing for multiline content. Default to 1.25 for body text and 1.2 for compact terminology/source footers.
 - Maintain readable hierarchy, consistent left/right margins, and at least 16 pt body text unless the supplied template clearly uses another validated scale.
 - Avoid dense card grids, decorative icons, and repeated UI-like panels.

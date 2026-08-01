@@ -3,4 +3,5 @@ __pycache__/
 .DS_Store
 Thumbs.db
 *.pptx
+!skills/optimize-research-review-slides/assets/default-templates/*.pptx
 *.pdf
