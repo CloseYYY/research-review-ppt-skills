@@ -49,7 +49,7 @@ macOS/Linux: ~/.codex/skills/optimize-research-review-slides
 
 也可以在 Codex 中直接提出：
 
-> 请从 GitHub 仓库 CloseYYY/research-review-ppt-skills 安装 optimize-research-review-slides skill。
+> 请从 GitHub 仓库 GuanBio/research-review-ppt-skills 安装 optimize-research-review-slides skill。
 
 安装后开启一个新任务，再上传草稿 PPT 和格式模板 PPT。
 
