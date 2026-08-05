@@ -1,0 +1,4 @@
+interface:
+  display_name: "科研结果型组会PPT优化"
+  short_description: "将生命科学实验结果整理为严谨、保密、可汇报的组会PPT"
+  default_prompt: "Use $optimize-research-results-slides to turn my confidential biology results into a verified Chinese lab-meeting PPTX with one consolidated missing-information checklist."

@@ -1,77 +1,114 @@
-# Research Review PPT Skills
+# Research PPT Skills
 
-面向生命科学研究生和科研人员的中文综述型组会 PPT 优化技能。它以“草稿 PPT + 格式模板 PPT”为主要输入，帮助 Agent 完成内容补充、结构重组、版式统一、科学语言润色、图像与文献证据补充、逐页讲稿生成，以及汇报时长控制。
+面向生命科学研究生和科研人员的中文科研 PPT Skills 集合。仓库目前包含综述型组会和实验结果型组会两套独立工作流，覆盖内容梳理、证据边界、科学语言、版式统一、逐页讲稿、术语全称、时长控制和渲染质检。
 
-## 适用场景
+## 选择合适的 Skill
 
-- 文献综述、方法综述、专题综述和开题前的领域梳理
-- 已有草稿内容较散，需要整理成可以正式汇报的 PPT
-- 希望沿用实验室、课题组或答辩模板的视觉风格
-- 需要“主汇报 + 备用页”结构，并按指定时长或页数压缩内容
+| Skill | 适用汇报 | 核心任务 |
+|---|---|---|
+| [`optimize-research-review-slides`](skills/optimize-research-review-slides/) | 文献综述、方法综述、专题梳理、机制或领域进展 | 按公开文献组织问题、证据、方法、局限与建议，并补充可追溯图源 |
+| [`optimize-research-results-slides`](skills/optimize-research-results-slides/) | 个人实验结果、阶段进展、数据复盘、未来实验计划 | 整理实验目的、方法与关键条件、结果、一句话结论和下一步验证，并严格保护未公开数据 |
 
-本技能专门针对综述型汇报。对于以个人实验数据、结果链条和研究结论为核心的结果型组会，应采用另一套叙事和证据组织方式。
+如果 PPT 同时包含两类内容，以主要证据来源决定主 Skill：个人未公开实验数据为主时使用结果型 Skill，背景知识页再调用综述型 Skill；已发表知识综合为主时使用综述型 Skill。
 
-## 核心能力
+## 共同能力
 
-- 优化前询问汇报时长或页数；用户也可以授权 Agent 自动判断
-- 按“问题—证据—方法—应用—局限—建议”组织综述内容
-- 支持主汇报页与备用页分离，给出建议讲述时间
-- 参考模板统一白色背景、字体、字号、色彩、页眉页脚和图文比例
-- 没有参考模板时提供 4 套内置白底配色：A 临床蓝（默认推荐）、B 生命青绿、C 编辑珊瑚、D 石墨靛蓝
-- 将标题改写为自然、准确的生物学报告语言
-- 使用严谨但易读的中文科学表达，并减少模板化、AI 化措辞
-- 为应用案例补充已发表文献或可信在线资料中的图片和出处
-- 为机制、通路、分子结构等内容生成或寻找简洁示意图
+- 中文生命科学组会语境，面向导师和课题组成员
+- 白色背景、统一无衬线字体和清晰图文层级
+- 严谨、科学、清楚的中文表达，减少模板化和 AI 化措辞
+- 多行内容使用 1.2–1.5 行距
 - 为每页生成讲稿并写入备注区
-- 在术语首次出现的页面和讲稿中补充中文名称及英文全称
-- 检查多行文字的行距、引用、图源、字体和汇报时长
-- 提供免疫学、衰老、神经科学、肿瘤、代谢、微生物、植物、结构生物学、细胞生物学等生命科学方向的扩展规范
+- 在非常见术语首次出现时补充中文名称、英文全称和缩写
+- 控制主汇报时长或页数，并支持备用页
+- 渲染每一页，检查文本溢出、重叠、字体、备注和来源
+- 输出可继续编辑的 PPTX
 
-## 目录
+## 两个工作流的关键区别
+
+### 综述型组会
+
+- 主要处理已发表文献、方法、机制和领域比较。
+- 可检索公开文献与权威数据库，补充公开案例图和来源。
+- 按“问题—证据—方法—应用—局限—建议”组织叙事。
+- 不作为用户新实验结果的主工作流。
+
+### 结果型组会
+
+- 主要处理用户未公开实验数据、阶段结论和后续实验。
+- 每张结果页必须清楚呈现实验目的、实验方法与关键条件、实验结果和一句话结论。
+- 缺失信息先通过一次性 Checklist 集中补充；支持“无 / 不适用 / 不清楚 / 已隐藏”。
+- 不把实验内容或可识别衍生信息发送到网页搜索、图像生成、外部 API 或无关任务。
+- 为每组结果提出下一步实验，并形成按优先级排列的总体路线图。
+
+## 安装
+
+将需要的 Skill 文件夹复制到个人 Codex Skills 目录：
 
 ```text
-skills/
-└── optimize-research-review-slides/
-    ├── SKILL.md
-    ├── agents/openai.yaml
-    ├── references/
-    └── scripts/audit_pptx.py
+Windows: %USERPROFILE%\.codex\skills\<skill-name>
+macOS/Linux: ~/.codex/skills/<skill-name>
 ```
 
-## Codex 安装
-
-将 `skills/optimize-research-review-slides` 复制到个人 Codex 技能目录：
+例如安装两套 Skill：
 
 ```text
-Windows: %USERPROFILE%\.codex\skills\optimize-research-review-slides
-macOS/Linux: ~/.codex/skills/optimize-research-review-slides
+~/.codex/skills/optimize-research-review-slides/
+~/.codex/skills/optimize-research-results-slides/
 ```
 
-也可以在 Codex 中直接提出：
+也可以先克隆仓库：
 
-> 请从 GitHub 仓库 Guan-Bio/research-review-ppt-skills 安装 optimize-research-review-slides skill。
+```bash
+git clone https://github.com/Guan-Bio/research-ppt-skills.git
+```
 
-安装后开启一个新任务，再上传草稿 PPT 和格式模板 PPT。
+每个 Skill 必须保持自身的 `SKILL.md`、`agents/`、`references/`、`scripts/` 和 `assets/` 相对路径不变。
 
 ## 使用示例
 
-> 请用 optimize-research-review-slides 优化这份综述型组会 PPT。草稿是“错误折叠蛋白质检测方法汇总.pptx”，格式参考“博士论文答辩.pptx”。汇报 15 分钟，采用“主汇报 + 备用页”模式，中文，听众为生命科学研究生。请补充案例图、逐页讲稿、术语全称和参考文献。
+综述型汇报：
 
-如果没有格式模板，技能会询问默认配色。可以直接指定：
+```text
+请使用 $optimize-research-review-slides 优化这份生命科学综述型组会 PPT。
+主汇报 15 分钟，中文，背景为白色；请补充公开案例图、逐页讲稿、术语全称和参考文献。
+```
 
-> 没有参考模板，请使用 A 临床蓝；如果我没有选择，采用推荐的 A。
+结果型汇报：
 
-如果不确定时长，可以写：
+```text
+请使用 $optimize-research-results-slides 优化这份实验结果型组会 PPT。
+请严格保密；每张结果页包含实验目的、关键实验条件、实验结果和一句话结论。
+缺失信息请一次性汇总为 Checklist，最后给出按优先级排列的后续实验计划。
+```
 
-> 页数和汇报时长由你根据内容自动决定，并说明判断依据。
+## 仓库结构
 
-## TRAE WORK 与 WorkBuddy
+```text
+research-ppt-skills/
+├── README.md
+├── LICENSE
+└── skills/
+    ├── optimize-research-review-slides/
+    │   ├── SKILL.md
+    │   ├── agents/
+    │   ├── assets/
+    │   ├── references/
+    │   └── scripts/
+    └── optimize-research-results-slides/
+        ├── README.md
+        ├── SKILL.md
+        ├── agents/
+        ├── references/
+        └── scripts/
+```
 
-本仓库采用通用的 `SKILL.md + references + scripts` 结构。若平台支持项目级 Skills，可将技能文件夹放入该平台约定的 skills 目录；若平台尚不能自动发现 Skills，可把 `SKILL.md` 作为主规则文件载入，并保持 `references/` 与 `scripts/` 的相对路径不变。不同版本的目录约定可能不同，安装后建议先用一份 3–5 页测试稿验证文件读取、PPT 编辑和备注写入能力。
+## 平台兼容
 
-## 发布与贡献
+仓库使用通用的 `SKILL.md + references + scripts + assets` 结构。不同平台的 PPTX 编辑能力可能不同，但应保持以下验收要求：保留源文件、生成新 PPTX、写入逐页备注、保留来源、渲染并逐页检查最终成品。
 
-欢迎通过 Issue 提交生命科学子领域规范、审稿清单和真实汇报案例。提交案例时请移除未公开数据、受试者信息和无授权图片。
+## 贡献与保密
+
+欢迎通过 Issue 或 Pull Request 提交生命科学子领域规则、审稿清单和合成测试案例。请勿上传未公开实验数据、受试者信息、真实样本标识、代称映射或无授权图片。
 
 ## License
 
