@@ -10,7 +10,7 @@
 - 需要为隐藏图片、基因名、数值或结论保留可替换位置
 - 需要逐页中文讲稿、术语全称和未来实验计划
 
-本 Skill 专门处理以用户未公开实验数据为核心的结果型汇报。对于主要综合已发表文献、机制或方法的综述型组会，请使用 [`optimize-research-review-slides`](https://github.com/Guan-Bio/research-review-ppt-skills/tree/main/skills/optimize-research-review-slides)。
+本 Skill 专门处理以用户未公开实验数据为核心的结果型汇报。对于主要综合已发表文献、机制或方法的综述型组会，请使用 [`optimize-research-review-slides`](https://github.com/Guan-Bio/research-ppt-skills/tree/main/skills/optimize-research-review-slides)。
 
 ## 核心能力
 
@@ -58,7 +58,7 @@ macOS/Linux: ~/.codex/skills/optimize-research-results-slides
 也可以克隆仓库：
 
 ```bash
-git clone https://github.com/Guan-Bio/optimize-research-results-slides.git
+git clone https://github.com/Guan-Bio/research-ppt-skills.git
 ```
 
 安装后开启一个新任务，再上传 PPTX 或实验材料。
